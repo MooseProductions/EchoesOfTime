@@ -3,6 +3,7 @@ package com.moose.core;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -22,6 +23,13 @@ public class ClassCore extends Canvas implements Runnable{
 	private Level level;
 	private Input input;
 	private Player player;
+	public static GameState gs = GameState.MAIN;
+	private MainMenu mm;
+	
+	enum GameState{
+		MAIN,
+		GAME
+	};
 	
 	public ClassCore(){
 		Dimension size = new Dimension(800,600);
@@ -40,10 +48,13 @@ public class ClassCore extends Canvas implements Runnable{
 		addKeyListener(input);
 		player = new Player(input);
 		level.add(player);
-		player.setToTile(3, 1);
+		player.setToTile(3, 2);
 		jframe.pack();
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
+		
+		mm = new MainMenu(input);
+		
 		t = new Thread(this, "MainThread");
 		t.start();
 	}
@@ -64,11 +75,18 @@ public class ClassCore extends Canvas implements Runnable{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		gui.render(g);
-		level.render(g, player.getX() - 400, player.getY() - 300);
+		if(gs == GameState.GAME){
+			gui.render(g);
+			level.render(g, player.getX() - 400, player.getY() - 300);
+		}else if(gs == GameState.MAIN){
+			mm.render(g);
+		}
 		
-		g.setColor(Color.blue);
-		g.drawString("FPS: "+ fps, 15, 20);
+		if(true){
+			g.setFont(new Font("Arial",0,12));
+			g.setColor(Color.blue);
+			g.drawString("FPS: "+ fps, 15, 20);
+		}
 		
 		g.dispose();
 		bs.show();
@@ -76,8 +94,12 @@ public class ClassCore extends Canvas implements Runnable{
 	
 	public void update(){
 		input.update();
-		gui.update();
-		level.update();
+		if(gs == GameState.GAME){
+			gui.update();
+			level.update();
+		} else if(gs == GameState.MAIN){
+			mm.update();
+		}
 	}
 
 	public void run() {

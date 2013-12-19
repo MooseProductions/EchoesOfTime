@@ -15,6 +15,7 @@ public class Input implements KeyListener, FocusListener, Serializable{
 	private boolean focus = false;
 	public boolean up, down, left, right;
 	private List<Integer> typed = new ArrayList<Integer>();
+	public boolean use;
 
 	public void focusGained(FocusEvent e) {
 		focus = true;
@@ -65,6 +66,7 @@ public class Input implements KeyListener, FocusListener, Serializable{
 		down = keys[KeyEvent.VK_S] | keys[KeyEvent.VK_DOWN];
 		left = keys[KeyEvent.VK_A] | keys[KeyEvent.VK_LEFT];
 		right = keys[KeyEvent.VK_D] | keys[KeyEvent.VK_RIGHT];
+		use = keys[KeyEvent.VK_ENTER];
 	}
 
 }
