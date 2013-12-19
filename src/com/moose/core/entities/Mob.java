@@ -17,8 +17,8 @@ public abstract class Mob extends Entity {
 
 	private boolean collision(int xa, int ya) {
 		for(int i = 0; i<4;i++){
-			int xt = ((x+xa)+i%2*32-16) >> 5; //int xt = ((x+xa)+i%2*32-16) >> 5;
-			int yt = ((y+ya)+i/2*32-16) >> 5; //int yt = ((y+ya)+i/2*32-16) >> 5;
+			int xt = ((x+xa)+i%2*31-16) >> 5; //int xt = ((x+xa)+i%2*32-16) >> 5;
+			int yt = ((y+ya)+i/2*31-16) >> 5; //int yt = ((y+ya)+i/2*32-16) >> 5;
 			Tile tile = level.getTile(xt, yt);
 			if(tile == null) continue;
 			if(tile.solid()) return true;

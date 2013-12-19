@@ -45,8 +45,6 @@ public class ClassCore extends Canvas implements Runnable{
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
 		t = new Thread(this, "MainThread");
-		System.out.println((double) (7 >> 5));
-		System.out.println((double) (7 / 32.0));
 		t.start();
 	}
 
