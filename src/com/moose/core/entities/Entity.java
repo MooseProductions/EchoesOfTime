@@ -30,8 +30,8 @@ public abstract class Entity {
 		Tile t = level.getTile(xt, yt);
 		if(t == null) return;
 		if(t.solid()) return;
-		x = xt * 32;
-		y = yt * 32;
+		x = xt * 32 + 16;
+		y = yt * 32 + 16;
 	}
 	
 	public int getX(){
