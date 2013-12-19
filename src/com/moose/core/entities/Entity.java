@@ -26,13 +26,13 @@ public abstract class Entity {
 		this.level = level;
 	}
 	
-//	public void setToTile(int xt, int yt){
-//		Tile t = level.getTile(xt, yt);
-//		if(t == null) return;
-//		if(t.solid()) return;
-//		x = xt * 32;
-//		y = yt * 32;
-//	}
+	public void setToTile(int xt, int yt){
+		Tile t = level.getTile(xt, yt);
+		if(t == null) return;
+		if(t.solid()) return;
+		x = xt * 32;
+		y = yt * 32;
+	}
 	
 	public int getX(){
 		return x;

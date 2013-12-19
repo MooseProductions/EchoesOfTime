@@ -40,7 +40,7 @@ public class ClassCore extends Canvas implements Runnable{
 		addKeyListener(input);
 		player = new Player(input);
 		level.add(player);
-		//player.setToTile(3, 3);
+		player.setToTile(3, 1);
 		jframe.pack();
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
