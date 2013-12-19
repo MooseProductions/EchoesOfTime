@@ -12,7 +12,7 @@ public class Player extends Mob{
 
 	public Player(Input input){
 		this.input = input;
-		sprite = SpriteSheet.sprites.getImage(20, 20, 20, 20);
+		sprite = SpriteSheet.sprites.getImage(0, 32, 32, 32);
 	}
 	
 	public void update(){
@@ -26,7 +26,7 @@ public class Player extends Mob{
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(sprite,400-10,300-10,20,20,null);
+		g.drawImage(sprite,400-16,300-16,32,32,null);
 	}
 	
 }
