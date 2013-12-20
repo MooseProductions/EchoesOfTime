@@ -3,6 +3,7 @@ package com.moose.core.entities;
 import java.awt.Graphics;
 
 import com.moose.core.graphics.SpriteSheet;
+import com.moose.core.util.Log;
 
 import com.moose.core.Input;
 
