@@ -9,6 +9,7 @@ import com.moose.core.Input;
 public class Player extends Mob{
 	
 	private Input input;
+	private int frame;
 
 	public Player(Input input){
 		this.input = input;
