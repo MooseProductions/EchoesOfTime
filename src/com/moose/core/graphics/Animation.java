@@ -4,11 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import com.moose.core.util.Log;
+
 public class Animation {
 	
-	private int frame;
+	//private int frame;
 	private ArrayList<Frame> images = new ArrayList<Frame>();
-	private int length;
+	//private int length;
 	private boolean stopped = false;
 	private boolean loop = false;
 	private float speed = 1.0f;
@@ -21,7 +23,16 @@ public class Animation {
 	}
 	
 	public void addFrame(Image img, int duration){
+		if (duration == 0) {
+			Log.error("Invalid duration: "+duration);
+			throw new RuntimeException("Invalid duration: "+duration);
+		}
+
+	    if (images.isEmpty()) {
+			nextChange = (int) (duration / speed);
+		} 
 		images.add(new Frame(img, duration));
+		currentFrame = 0;
 	}
 	
 	public void update(long delta){
@@ -56,16 +67,20 @@ public class Animation {
 	}
 
 	public void draw(Graphics g, int x, int y){
-		g.drawImage(images.get(frame).img,x,y,20,20,null);
+		if (images.size() == 0) {
+			return;
+		}
+		System.out.println(nextChange);
+		g.drawImage(images.get(currentFrame).img,x,y,32,32,null);
 	}
 	
-	public void setLength(int length){
-		this.length = length;
-	}
+//	public void setLength(int length){
+//		this.length = length;
+//	}
 	
-	public void resetAnimation(){
-		frame = 0;
-	}
+//	public void resetAnimation(){
+//		frame = 0;
+//	}
 	
 	private class Frame{
 		

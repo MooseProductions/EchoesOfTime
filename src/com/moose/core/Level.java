@@ -46,9 +46,9 @@ public class Level {
 		}
 	}
 	
-	public void update(){
+	public void update(int delta){
 		for(Entity e : entities){
-			e.update();
+			e.update(delta);
 		}
 	}
 	

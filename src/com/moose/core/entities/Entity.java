@@ -20,7 +20,7 @@ public abstract class Entity {
 	
 	public abstract void render(Graphics g); 
 	
-	public abstract void update();
+	public abstract void update(int delta);
 	
 	public void init(Level level){
 		this.level = level;

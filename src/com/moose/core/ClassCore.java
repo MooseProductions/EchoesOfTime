@@ -92,11 +92,11 @@ public class ClassCore extends Canvas implements Runnable{
 		bs.show();
 	}
 	
-	public void update(){
+	public void update(int delta){
 		input.update();
 		if(gs == GameState.GAME){
 			gui.update();
-			level.update();
+			level.update(delta);
 		} else if(gs == GameState.MAIN){
 			mm.update();
 		}
@@ -114,7 +114,7 @@ public class ClassCore extends Canvas implements Runnable{
 			lastTime = now;
 			boolean shouldRender = true;
 			while (unprocessed >= 1) {
-				update();
+				update((int) unprocessed);
 				unprocessed -= 1;
 				shouldRender = true;
 			}
