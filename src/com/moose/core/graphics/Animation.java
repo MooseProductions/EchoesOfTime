@@ -17,9 +17,14 @@ public class Animation {
 	private int currentFrame = -1;
 	private long nextChange = 0;
 	private int direction = 1;
+	private boolean didit = false;
+	
+	public Animation(ArrayList<Frame> imgs){
+		this.images = imgs;
+	}
 	
 	public Animation(){
-		//this.images = imgs;
+		
 	}
 	
 	public void addFrame(Image img, int duration){
@@ -47,40 +52,47 @@ public class Animation {
 			return;
 		}
 		
-		nextChange -= delta;
+		//nextChange -= delta;
 		
-		while (nextChange < 0 && (!stopped)) {
+		//while (nextChange < 0 && (!stopped)) {
 			if ((currentFrame == images.size() - 1) && (!loop)) {
 	            stopped = true; 
-				break;
+				return;
 			}
 			
-			currentFrame = (currentFrame + direction) % images.size();
+			//currentFrame = (currentFrame + direction) % images.size();
+			nextChange--;
 			
 			if (currentFrame >= images.size()-1) {
 				currentFrame = images.size()-1;
 				direction = -1;
 			}
-			int realDuration = (int) (((Frame) images.get(currentFrame)).duration / speed);
-			nextChange = nextChange + realDuration;
-		}
+			
+			if(!didit){
+				didit = true;
+				currentFrame = 0;
+				nextChange = images.get(currentFrame).duration;
+			}
+			
+			if(nextChange <= 0){
+				currentFrame++;
+				nextChange = images.get(currentFrame).duration;
+				didit = false;
+			}
+			//System.out.println(nextChange);
+			//nextChange = images.get(currentFrame).duration;
+			//currentFrame = images.get(currentFrame).duration;
+			//int realDuration = (int) (((Frame) images.get(currentFrame)).duration / speed);
+			//nextChange = nextChange + realDuration;
+		//}
 	}
 
 	public void draw(Graphics g, int x, int y){
 		if (images.size() == 0) {
 			return;
 		}
-		System.out.println(nextChange);
 		g.drawImage(images.get(currentFrame).img,x,y,32,32,null);
 	}
-	
-//	public void setLength(int length){
-//		this.length = length;
-//	}
-	
-//	public void resetAnimation(){
-//		frame = 0;
-//	}
 	
 	private class Frame{
 		

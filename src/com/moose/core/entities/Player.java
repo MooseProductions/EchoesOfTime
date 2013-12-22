@@ -17,8 +17,10 @@ public class Player extends Mob{
 	public Player(Input input){
 		this.input = input;
 		anim = new Animation();
-		anim.addFrame(sprite, 3);
 		sprite = SpriteSheet.sprites.getImage(32, 32, 32, 32);
+		anim.addFrame(sprite, 30);
+		anim.addFrame(SpriteSheet.sprites.getImage(0, 32, 32, 32), 30);
+		anim.addFrame(SpriteSheet.sprites.getImage(0, 0, 32, 32), 30);
 	}
 	
 	public void update(int delta){
